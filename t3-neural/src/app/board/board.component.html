@@ -1,0 +1,85 @@
+<img src="assets/ttt.svg" alt="">
+
+<div class="main">
+    <div class="board-container">
+        <div class="stats">
+            <div class="p-x">
+                PLAYER X
+                <div class="score">
+                    {{ wins }}
+                </div>
+            </div>
+            <div class="p-d">
+                DRAW
+                <div class="score">
+                    {{ draws }}
+                </div>
+            </div>
+            <div class="p-o">
+                PLAYER Y
+                <div class="score">
+                    {{ losses }}
+                </div>
+            </div>
+        </div>
+        <div class="board">
+            @for (cell of board; track $index) {
+            <div class="cell" (click)="mark($index)">
+                @if (board[$index]===-1) {
+                <ng-container *ngTemplateOutlet="zero"></ng-container>
+                } @else if (board[$index]===1){
+                <ng-container *ngTemplateOutlet="cross"></ng-container>
+                }
+            </div>
+            }
+        </div>
+        <button class="btn new" (click)="resetBoard()">
+            New Game
+        </button>
+        <div class="team">
+            <div class="player" [ngClass]="{active: player === 1}" (click)="player = 1">
+                Team X
+            </div>
+            <div class="player" [ngClass]="{active: player === -1}"
+                (click)="player = -1; board[4]=1; visited[4]=true; curr = -1; boardStates=[[0,0,0,0,1,0,0,0,0]]">
+                Team O
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #cross>
+    <svg class="cross" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+        viewBox="0 0 256 256" xml:space="preserve">
+
+        <defs>
+        </defs>
+        <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
+            transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
+            <path
+                d="M 5 90 c -1.28 0 -2.559 -0.488 -3.536 -1.465 c -1.953 -1.952 -1.953 -5.118 0 -7.07 l 80 -80 c 1.951 -1.952 5.119 -1.952 7.07 0 c 1.953 1.953 1.953 5.119 0 7.071 l -80 80 C 7.559 89.512 6.28 90 5 90 z"
+                style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: #fff; fill-rule: nonzero; opacity: 1;"
+                transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+            <path
+                d="M 85 90 c -1.279 0 -2.56 -0.488 -3.535 -1.465 l -80 -80 c -1.953 -1.953 -1.953 -5.119 0 -7.071 s 5.118 -1.952 7.071 0 l 80 80 c 1.953 1.952 1.953 5.118 0 7.07 C 87.56 89.512 86.279 90 85 90 z"
+                style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: #fff; fill-rule: nonzero; opacity: 1;"
+                transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+        </g>
+    </svg>
+</ng-template>
+
+<ng-template #zero>
+    <svg class="zero" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+        viewBox="0 0 256 256" xml:space="preserve">
+
+        <defs>
+        </defs>
+        <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
+            transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
+            <path
+                d="M 45 90 C 20.187 90 0 69.813 0 45 C 0 20.187 20.187 0 45 0 c 24.813 0 45 20.187 45 45 C 90 69.813 69.813 90 45 90 z M 45 8 C 24.598 8 8 24.598 8 45 c 0 20.402 16.598 37 37 37 c 20.402 0 37 -16.598 37 -37 C 82 24.598 65.402 8 45 8 z"
+                style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: #ffff; fill-rule: nonzero; opacity: 1;"
+                transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+        </g>
+    </svg>
+</ng-template>
