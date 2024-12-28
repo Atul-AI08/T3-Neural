@@ -42,7 +42,6 @@ T3-Neural is an advanced Tic Tac Toe project that features Reinforcement Learnin
 
 - **Dynamic Difficulty Adjustment**: Allow users to set bot difficulty levels.
 - **Multiplayer Mode**: Enable online multiplayer functionality.
-- **Improved AI**: Experiment with more advanced RL algorithms like Deep Q-Learning.
 
 ---
 
